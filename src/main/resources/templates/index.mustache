@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <link rel="stylesheet" type="text/css" href="/css/index.css">
+    </head>
+    <body>
+
+        <h1>Hai sa vedem daca merge</h1>
+
+        <p>Chiar is curios daca o sa mearga</p>
+
+        <ul>
+            {{#videos}}
+                <li>{{name}}</li>
+            {{/videos}}
+
+            <form action="/new-video" method="post">
+                <input type="text" name="name">
+                <input type="text" name="description">
+                <button type="submit">Submit</button>
+            </form>
+        </ul>
+
+        <br>
+
+        <container class="container-field-search">
+
+            <div class="div-field-search">
+                <form action="/universal-search" method="post">
+                    <label for="value">Search:</label>
+                    <input type="text" name="value">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+        </container>
+
+        <br>
+
+        <container class="container-universal-search">
+
+            <form action="/multi-field-search" method="post">
+                <label for="name">Name:</label>
+                <input type="text" name="name">
+                <label for="description">Description:</label>
+                <input type="text" name="description">
+                <button type="submit">Search</button>
+            </form>
+
+        </container>
+
+    </body>
+</html>

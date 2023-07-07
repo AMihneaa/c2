@@ -1,0 +1,21 @@
+.container-field-search{
+    border: 1px solid #24292e;
+    color: red;
+    height: 100px;
+    width: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-universal-search{
+    border: 1px solid #24292e;
+    color: greenyellow;
+    height: 100px;
+    width: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
