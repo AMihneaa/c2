@@ -8,17 +8,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
     CommandLineRunner initUsers(UserManagementRepository repository) {
         return args -> {
+            repository.save(new UserAccount("mihnea", "1234", "ROLE_USER"));
+            repository.save(new UserAccount("stefan", "1234", "ROLE_USER"));
             repository.save(new UserAccount("user", "password", "ROLE_USER"));
             repository.save(new UserAccount("admin", "password", "ROLE_ADMIN"));
         };
@@ -26,22 +30,24 @@ public class SecurityConfig {
 
     @Bean
     UserDetailsService userService(UserRepository repo) {
-        return username -> repo.findByUsername(username).asUser();
+        return userName -> repo.findByUserName(userName).asUser();
     }
 
     @Bean
     SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/", "/search").authenticated()
-                .requestMatchers(HttpMethod.GET, "/api/**").authenticated()
+        http.authorizeHttpRequests().requestMatchers("/login").permitAll();
+        http.authorizeHttpRequests().requestMatchers("/", "/search").authenticated();
+
+        http.authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/api/**").authenticated()
                 .requestMatchers("/admin").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/new-video", "/api/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/new-video", "/api/**").hasRole("USER")
                 .anyRequest().denyAll()
                 .and()
-                .formLogin() //
+                .formLogin()
                 .and()
-                .httpBasic();
+                .httpBasic().and().csrf().disable();
         return http.build();
     }
+
+
 }

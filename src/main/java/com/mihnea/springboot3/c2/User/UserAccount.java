@@ -1,8 +1,6 @@
 package com.mihnea.springboot3.c2.User;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,16 +15,15 @@ import java.util.Objects;
 public class UserAccount {
 
     private @Id @GeneratedValue Long id;
-    private String username;
+    private String userName;
     private String password;
-    @ElementCollection(fetch = FetchType.EAGER) //
-    private List<GrantedAuthority> authorities = //
-            new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<GrantedAuthority> authorities = new ArrayList<>();
 
     protected UserAccount() {}
 
     public UserAccount(String username, String password, String... authorities) {
-        this.username = username;
+        this.userName = username;
         this.password = password;
         this.authorities = Arrays.stream(authorities) //
                 .map(SimpleGrantedAuthority::new) //
@@ -51,11 +48,11 @@ public class UserAccount {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getPassword() {
@@ -84,18 +81,18 @@ public class UserAccount {
         if (o == null || getClass() != o.getClass())
             return false;
         UserAccount user = (UserAccount) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username)
+        return Objects.equals(id, user.id) && Objects.equals(userName, user.userName)
                 && Objects.equals(password, user.password) && Objects.equals(authorities, user.authorities);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, authorities);
+        return Objects.hash(id, userName, password, authorities);
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" + password + '\'' + ", authorities="
+        return "User{" + "id=" + id + ", username='" + userName + '\'' + ", password='" + password + '\'' + ", authorities="
                 + authorities + '}';
     }
 }
