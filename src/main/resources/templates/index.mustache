@@ -1,9 +1,17 @@
-<h1>Greetings Learning Spring Boot 3.0 fans!</h1>
+<div>
+    <h3>User Profile</h3>
+    <ul>
+        <li>Username: {{authentication.name}}</li>
+        <li>Authorities: {{authentication.authorities}}</li>
 
-<p>
-    In this chapter, we are learning how to make
-    a web app using Spring Boot 3.0
-</p>
+        <script>
+            const account = "{{authentication.name}}"
+
+            console.log(account);
+        </script>
+
+    </ul>
+</div>
 
 <form action="/search" method="post">
     <label for="value">Search:</label>
@@ -19,11 +27,22 @@
     {{#videos}}
         <li>
             {{name}}
+            Postat de: {{userName}}
+
             <form action="/delete/videos/{{id}}" method="post">
-                <button type="submit">Delete</button>
+                <button id="delete-btn-{{id}}" type="submit">Delete</button>
             </form>
+
+            <script>
+                var name = "{{userName}}";
+                var deleteButton = document.getElementById("delete-btn-{{id}}");
+                if (!(account == "admin")){
+                    deleteButton.disabled = account === name ? false : true;
+                }
+            </script>
         </li>
     {{/videos}}
+
 
     <form action="/new-video" method="post">
         <input type="text" name="name">

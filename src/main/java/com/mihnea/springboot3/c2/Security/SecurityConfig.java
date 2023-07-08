@@ -37,6 +37,7 @@ public class SecurityConfig {
     SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().requestMatchers("/login").permitAll();
         http.authorizeHttpRequests().requestMatchers("/", "/search").authenticated();
+        http.authorizeHttpRequests().requestMatchers(HttpMethod.POST, "/delete/**").authenticated();
 
         http.authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/api/**").authenticated()
                 .requestMatchers("/admin").hasRole("ADMIN")

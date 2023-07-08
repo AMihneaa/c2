@@ -18,17 +18,14 @@ public class VideoService {
         return repository.findAll();
     }
 
-
     public VideoEntity create(NewVideo newVideo, String userName){
         return repository.saveAndFlush(new VideoEntity(userName, newVideo.name(), newVideo.description()));
     }
 
-    public void delete(Long videoId){
-        repository.findById(videoId).map( (videoEntity) -> {
-            repository.delete(videoEntity);
+    public void deleteVideo(Long id){
+        VideoEntity videoEntity = repository.findById(id).orElseThrow( () -> new RuntimeException("Nu s a gasit video cu id " + id));
 
-            return true;
-        }).orElseThrow( () -> new RuntimeException("No video with id " + videoId));
+        repository.delete(videoEntity);
     }
 
     public List<VideoEntity> search(Search videoSearch) {

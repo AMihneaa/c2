@@ -48,9 +48,9 @@ public class HomeController {
         return "index";
     }
 
-    @PostMapping("/delete/videos/{videoId}")
-    public String deleteVideo(@PathVariable Long videoId){
-        videoService.delete(videoId);
+    @PostMapping("/delete/videos/{id}")
+    public String deleteVideo(@PathVariable("id") Long id) {
+        videoService.deleteVideo(id);
 
         return "redirect:/";
     }
