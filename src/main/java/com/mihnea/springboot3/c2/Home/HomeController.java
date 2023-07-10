@@ -34,25 +34,29 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @PostMapping("/multi-field-search")
-    public String multiFieldSearch(@ModelAttribute Search search, Model model) {
-        List<VideoEntity> searchResults = videoService.search(search);
-        model.addAttribute("videos", searchResults);
-        return "index";
-    }
+//    @PostMapping("/multi-field-search")
+//    public String multiFieldSearch(@ModelAttribute Search search, Model model) {
+//        List<VideoEntity> searchResults = videoService.search(search);
+//        model.addAttribute("search", searchResults);
+//        return "index";
+//    }
 
-    @PostMapping("/universal-search")
+    @PostMapping("/search")
     public String universalSearch(@ModelAttribute UniversalSearch search, Model model) {
         List<VideoEntity> searchResults = videoService.search(search);
-        model.addAttribute("videos", searchResults);
+        model.addAttribute("nameSearch", searchResults);
         return "index";
     }
-
     @PostMapping("/delete/videos/{id}")
     public String deleteVideo(@PathVariable("id") Long id) {
         videoService.deleteVideo(id);
 
         return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(){
+        return "/logout";
     }
 
 }

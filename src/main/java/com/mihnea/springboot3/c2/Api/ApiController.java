@@ -3,9 +3,7 @@ package com.mihnea.springboot3.c2.Api;
 import com.mihnea.springboot3.c2.Video.NewVideo;
 import com.mihnea.springboot3.c2.Video.VideoEntity;
 import com.mihnea.springboot3.c2.Video.VideoService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 

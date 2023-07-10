@@ -10,6 +10,10 @@
             console.log(account);
         </script>
 
+        <form action="/logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
+
     </ul>
 </div>
 
@@ -19,9 +23,17 @@
     <button type="submit">Search</button>
 </form>
 
-{{#search}}
-    Searching: {{value}}
-{{/search}}
+Aici sub:
+{{#nameSearch}}
+    Searching:
+    <li>
+         {{value}}
+    </li>
+{{/nameSearch}}
+
+Aici deasupra:
+
+<br>
 
 <ul>
     {{#videos}}

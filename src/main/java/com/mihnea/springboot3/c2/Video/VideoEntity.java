@@ -19,7 +19,7 @@ public class VideoEntity {
         this(null, null, null);
     }
 
-    VideoEntity(String userName, String name, String description) {
+    public VideoEntity(String userName, String name, String description) {
         this.id = null;
         this.userName = userName;
         this.description = description;
@@ -58,4 +58,13 @@ public class VideoEntity {
         return userName;
     }
 
+    @Override
+    public String toString() {
+        return "VideoEntity{" +
+                "id=" + id +
+                ", username='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
