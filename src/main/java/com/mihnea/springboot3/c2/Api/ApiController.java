@@ -12,7 +12,8 @@ import java.util.List;
 @RestController
 class ApiController {
 
-    private @Autowired VideoService videoService;
+    private VideoService videoService;
+
 
     public ApiController(VideoService videoService) {
         this.videoService = videoService;

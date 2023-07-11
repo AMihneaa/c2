@@ -13,7 +13,8 @@ public interface VideoRepository extends JpaRepository<VideoEntity, Long> {
     List<VideoEntity> findByDescriptionContainsIgnoreCase(String partialDescription);
 
     List<VideoEntity> findByNameContainsOrDescriptionContainsAllIgnoreCase(String partialName, String partialDescription);
-    VideoEntity findById(long id);
+
+//    VideoEntity findById(long id);
 
     @PreAuthorize("#videoEntity.userName == authentication.name || hasAuthority('ROLE_ADMIN')")
     @Override

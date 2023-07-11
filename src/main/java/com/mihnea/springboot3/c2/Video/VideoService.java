@@ -12,7 +12,11 @@ import java.util.List;
 @Service
 public class VideoService {
 
-    private @Autowired VideoRepository repository;
+    private final VideoRepository repository;
+
+    public VideoService(VideoRepository repository) {
+        this.repository = repository;
+    }
 
     public List<VideoEntity> getVideos() {
         return repository.findAll();
