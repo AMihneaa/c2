@@ -3,7 +3,6 @@ package com.mihnea.springboot3.c2.Api;
 import com.mihnea.springboot3.c2.Video.NewVideo;
 import com.mihnea.springboot3.c2.Video.VideoEntity;
 import com.mihnea.springboot3.c2.Video.VideoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @RestController
 class ApiController {
 
-    private VideoService videoService;
+    private final VideoService videoService;
 
 
     public ApiController(VideoService videoService) {
