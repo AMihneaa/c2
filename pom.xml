@@ -109,6 +109,13 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -145,16 +152,16 @@
 							<goal>npm</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>npx run</id>
-						<goals>
-							<goal>npx</goal>
-						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<arguments>parcel build</arguments>
-						</configuration>
-					</execution>
+<!--					<execution>-->
+<!--						<id>npx run</id>-->
+<!--						<goals>-->
+<!--							<goal>npx</goal>-->
+<!--						</goals>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<configuration>-->
+<!--							<arguments>parcel build</arguments>-->
+<!--						</configuration>-->
+<!--					</execution>-->
 				</executions>
 				<configuration>
 					<nodeVersion>v16.14.2</nodeVersion>
